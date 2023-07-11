@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WEB700</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/theme.css" />
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Amit Thakuri</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/htmlDemo">Html Demo</a></li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/students/add">Add Student</a>
+					  </li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tas">Teaching Assistants</a></li>
+					<li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row">
+				<main class="col-md-12">
+
+						<!--Table Section-->
+
+					<div style="text-align: center;">
+						<h1>Table Section</h1>
+					</div>
+					<table border="3" cellspacing="0" cellpadding="5" width="300" >
+						<caption>Table 1: Fruit Prices</caption>
+						<thead>
+						<tr>
+							<th>Fruit</th>
+							<th>Price (CAD)</th>
+							<th>Quantity</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Apple</td>
+							<td>$0.75</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td>Orange</td>
+							<td>$0.50</td>
+							<td rowspan="2">20</td>
+							
+						<tr>	
+							<td>Banana</td>
+							<td>$0.40</td>
+							
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="3">Total: $25.5</td>
+							
+						</tr>
+						</tfoot>
+					</table>
+				
+					<table border="3" cellspacing="0" cellpadding="5" width="500">
+						<caption>Table 2: Employee Information</caption>					
+						<tr>
+							<th >Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Ram Basnet</td>
+							<td>r.basnet@gmail.com</td>
+							<td>(555) 123-4567</td>
+						</tr>
+						<tr>
+							<td>John Snow</td>
+							<td>got@hbo.com</td>
+							<td>(555) 987-6543</td>
+						</tr>
+						<tr>
+							<td>Khal Hussain</td>
+							<td>hussain.k21@gmail.com</td>
+							<td>(555) 555-5555</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="3">Total Employees: 3</td>
+						</tr>
+						</tfoot>
+					</table>
+					<p>The "Tables" section contains two HTML tables. Table 1 displays the prices and quantities of different fruits. It uses the <code>thead</code>, <code>tbody</code>, and <code>tfoot</code>
+						elements to structure the table. The cells in this table contain text representing fruit names, prices, and quantities. The table also has a caption indicating its purpose. Table 2 presents
+						employee information, including names, contact emails, and phone numbers. It utilizes the <code>rowspan</code> and <code>colspan</code> properties to merge cells and create a more organized 
+						layout. This table also includes a caption and a footer with a summary of the number of employees.</p>
+
+						<!--List section-->
+					
+					<div style="text-align: center;">
+						<h1>List Section</h1>
+					</div>
+					<ul>
+						<li>This is an example of text.</li>
+						<li>This is an example of a link: <a href="https://web700.ca/">Click Here</a></li>
+						<li>Item 3</li>
+						<li>
+						  Item 4 with sub-list:
+						  <ol>
+							<li>Sub-item 1</li>
+							<li>Sub-item 2</li>
+							<li>Sub-item 3</li>
+						  </ol>
+						</li>
+						<li>Item 5</li>
+					  </ul>
+					  <p>The "Lists" section contains a single unordered list. The list consists of five items. Item 4 contains an ordered sub-list with three sub-items. Each item in the list 
+						can contain various types of content, such as text or other HTML elements like images or links. The purpose of this section is to demonstrate the use of lists to organize 
+						and structure information in a hierarchical manner.</p>
+
+
+						<!--Image Section-->
+
+					<div style="text-align: center;">
+						<h1>Image Section</h1>
+					</div>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Snowboarder_in_halfpipe.jpg" alt="Snowboarder in halfpipe">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Scenic_View_of_Mountains.jpg" alt="Scenic view of mountains">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/4/47/City_Skyline_at_Night.jpg" alt="City skyline at night">
+					<p>The "Images" section showcases three images. Each image has been provided with alternative text ("alt" text) to ensure accessibility. The first image displays a snowboarder in
+					    a halfpipe. Images are a powerful visual medium that can enhance the user experience and convey information in a more engaging way.</p>	
+
+						<!--Audio Section-->
+
+					<div style="text-align: center;">
+						<h1>Audio Section</h1>
+					</div>
+					<audio controls>
+						<source src="https://pat-crawford-sdds.netlify.app/shared/fall-2022/web700/A3/sample-audio.mp3" type="audio/mpeg">
+						<source src="https://pat-crawford-sdds.netlify.app/shared/fall-2022/web700/A3/sample-audio.ogg" type="audio/ogg">
+						Your browser does not support the audio element.
+					  </audio>
+					  <p>The "Audio" section features an HTML5 audio player. The audio source consists of a sample audio file. The audio player includes controls for play/pause, volume adjustment, and 
+						track progress. By providing audio content, websites can offer an immersive experience for users, allowing them to listen to music, podcasts, or other audio recordings directly 
+						on the page.</p>
+						<!--Video Section-->
+
+					<div style="text-align: center;">
+						<h1>Video Section</h1>
+					</div>
+					<video controls width="1000">
+						<source src="https://pat-crawford-sdds.netlify.app/shared/fall-2022/web700/A3/sample-video.mp4" type="video/mp4">
+						<source src="https://pat-crawford-sdds.netlify.app/shared/fall-2022/web700/A3/sample-video.ogg" type="video/ogg">
+						<source src="https://pat-crawford-sdds.netlify.app/shared/fall-2022/web700/A3/sample-video.webm" type="video/webm">
+						Your browser does not support the video element.
+					  </video>
+					  <p>The "Video" section showcases an HTML5 video player. The video source consists of a sample video file available in different formats. The video player provides controls for 
+						playback, volume adjustment, and video progress. By including video content on a website, you can engage users with visual storytelling, tutorials, product demonstrations, 
+						and more. Videos are a versatile medium for conveying information and enhancing user experience.</p>
+
+				</main>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
