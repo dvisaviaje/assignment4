@@ -1,123 +1,132 @@
-/********************************************************************************* *
- * WEB700 – Assignment 03 *
- * I declare that this assignment is my own work in accordance with Seneca Academic Policy.
- * No part of this assignment has been copied manually or electronically from any other source.
- * (including 3rd party web sites) or distributed to other students.
- *  Name: Amit Thakuri Student ID: 141128223 Date: 2023/09/10 *
- * Online (Cyclic) Link: ________________________________________________________
- * ********************************************************************************/
+/*********************************************************************************
+* WEB700 – Assignment 04
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part 
+* of this assignment has been copied manually or electronically from any other source 
+* (including 3rd party web sites) or distributed to other students.
+* 
+* Name:  Dennis Visaviaje  Student ID:  118853209  Date:July 16, 2023
+*
+* Online (Cyclic) Link: ________________________________________________________
+*
+********************************************************************************/
 
+
+
+const collegeDataModule = require('./modules/collegeData');
 var HTTP_PORT = process.env.PORT || 8080;
-var express = require("express");
-const bodyParser = require('body-parser');
+var express = require('express');
+var path = require('path');
 var app = express();
-const path = require("path");
-const collegeData = require("./modules/collegeData");
+app.use(express.urlencoded({ extended: true }));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"))
+function handleStudents(req, res) {
+  const course = req.query['course'];
+  if (course) {
+    collegeDataModule
+      .getStudentsByCourse(course)
+      .then(function (response) {
+        res.json(response);
+      })
+      .catch(function () {
+        res.json({ message: 'no results' });
+      });
+  } else {
+    collegeDataModule
+      .getAllStudents()
+      .then(function (response) {
+        res.json(response);
+      })
+      .catch(function () {
+        res.json({ message: 'no results' });
+      });
+  }
+}
 
-collegeData
+function handleStudent(req, res) {
+  const num = req.params['num'];
+  if (num) {
+    collegeDataModule
+      .getStudentByNum(num)
+      .then(function (response) {
+        res.json(response);
+      })
+      .catch(function () {
+        res.json({ message: 'no results' });
+      });
+  } else {
+    res.json({ message: 'no results' });
+  }
+}
+
+function handleTAs(req, res) {
+  collegeDataModule
+    .getTAs()
+    .then(function (response) {
+      res.json(response);
+    })
+    .catch(function () {
+      res.json({ message: 'no results' });
+    });
+}
+
+function handleCourses(req, res) {
+  collegeDataModule
+    .getCourses()
+    .then(function (response) {
+      res.json(response);
+    })
+    .catch(function () {
+      res.json({ message: 'no results' });
+    });
+}
+
+function handleaddStudent(req, res) {
+  const payload = req.body;
+  collegeDataModule
+    .addStudent(payload)
+    .then(function () {
+      res.redirect('/students');
+    })
+    .catch(function () {
+      res.redirect('/students');
+      console.log('Error while inserting student');
+    });
+}
+
+app.get('/students', handleStudents);
+app.get('/student/:num', handleStudent);
+app.post('/students/add', handleaddStudent);
+app.get('/tas', handleTAs);
+app.get('/courses', handleCourses);
+app.get(['/', '/home'], function (req, res) {
+  const home = path.join(__dirname, 'views', 'home.html');
+  res.sendFile(home);
+});
+app.get('/about', function (req, res) {
+  const about = path.join(__dirname, 'views', 'about.html');
+  res.sendFile(about);
+});
+app.get('/htmlDemo', function (req, res) {
+  const htmlDemo = path.join(__dirname, 'views', 'htmlDemo.html');
+  res.sendFile(htmlDemo);
+});
+app.get('/addStudent', function (req, res) {
+  const addStudent = path.join(__dirname, 'views', 'addStudent.html');
+  res.sendFile(addStudent);
+});
+
+app.use((req, res, next) => {
+  res.status(404).send('<h1>Page not found on the server</h1>');
+});
+// setup http server to listen on HTTP_PORT
+collegeDataModule
   .initialize()
-  .then(() => {
-    app.get("/students", (req, res) => {
-      collegeData
-        .getAllStudents()
-        .then((students) => {
-          if (req.query.course) {
-            return collegeData.getStudentByCourse(parseInt(req.query.course));
-          } else {
-            return students;
-          }
-        })
-        .then((result) => {
-          if (result.length > 0) {
-            res.json(result);
-          } else {
-            res.json({ message: "no results" });
-          }
-        })
-        .catch(() => {
-          res.status(404).json({ message: "no results" });
-        });
-    });
-
-    app.get("/tas", (req, res) => {
-      collegeData
-        .getTAs()
-        .then((result) => {
-          res.json(result);
-        })
-        .catch(() => {
-          res.status(404).json({ message: "no results" });
-        });
-    });
-
-    app.get("/courses", (req, res) => {
-      collegeData
-        .getCourses()
-        .then((result) => {
-          res.json(result);
-        })
-        .catch(() => {
-          res.status(404).json({ message: "no results" });
-        });
-    });
-
-    app.get("/student/:num", (req, res) => {
-      const studentNum = parseInt(req.params.num);
-      collegeData
-        .getStudentByNum(studentNum)
-        .then((result) => {
-          res.json(result);
-        })
-        .catch(() => {
-          res.status(404).json({ message: "no results" });
-        });
-    });
-
-    app.get("/", (req, res) => {
-      res.sendFile(path.join(__dirname, "views", "home.html"));
-    });
-
-    app.get("/about", (req, res) => {
-      res.sendFile(path.join(__dirname, "views", "about.html"));
-    });
-
-    app.get("/htmlDemo", (req, res) => {
-      res.sendFile(path.join(__dirname, "views", "htmlDemo.html"));
-    });
-
-    // new added routes
-    app.get("/students/add", (req, res) => {
-      res.sendFile(path.join(__dirname, "views", "addStudent.html"));
-    });
-
-    
-    app.post("/students/add", (req, res) => {
-      const studentData = req.body;
-
-    collegeData
-        .addStudent(studentData)
-        .then(() => {
-          res.redirect("/students");
-        })
-
-        // don't know if this is necessary so, please remove it if not
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send("Error Adding Student");
-        });
-    });
-
-    app.use((req, res) => {
-      res.status(404).send("Page Not Found");
-    });
-
+  .then(function () {
     app.listen(HTTP_PORT, () => {
-      console.log("Server listening on port: " + HTTP_PORT);
+      console.log('server listening on port: ' + HTTP_PORT);
     });
   })
-  .catch((err) => {
-    console.error(err);
+  .catch(function (err) {
+    console.log(err);
   });
